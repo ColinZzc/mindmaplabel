@@ -1,0 +1,107 @@
+[
+ {
+  "image": "s2.PNG",
+  "nodes": [
+   {
+    "id": "0",
+    "text": "season",
+    "color": "0",
+    "shape": "2",
+    "coordinates": {
+     "x": 0.5284981476204047,
+     "y": 0.5104804521902968,
+     "width": 0.21473354231974923,
+     "height": 0.18393782383419688
+    }
+   },
+   {
+    "id": "1",
+    "text": "spring",
+    "color": "0",
+    "shape": "0",
+    "coordinates": {
+     "x": 0.5222285551439156,
+     "y": 0.22939236928874238,
+     "width": 0.2084639498432602,
+     "height": 0.2538860103626943
+    }
+   },
+   {
+    "id": "2",
+    "text": "summer",
+    "color": "0",
+    "shape": "0",
+    "coordinates": {
+     "x": 0.8035765175263608,
+     "y": 0.5027084314649082,
+     "width": 0.2257053291536051,
+     "height": 0.13212435233160622
+    }
+   },
+   {
+    "id": "3",
+    "text": "autumn",
+    "color": "0",
+    "shape": "0",
+    "coordinates": {
+     "x": 0.5284981476204047,
+     "y": 0.8265426283560999,
+     "width": 0.2742946708463949,
+     "height": 0.20466321243523317
+    }
+   },
+   {
+    "id": "4",
+    "text": "winter",
+    "color": "0",
+    "shape": "0",
+    "coordinates": {
+     "x": 0.2589056711313765,
+     "y": 0.49882242110221386,
+     "width": 0.25235109717868337,
+     "height": 0.18134715025906736
+    }
+   }
+  ],
+  "links": [
+   {
+    "node1": "1",
+    "node2": "0",
+    "color": "0",
+    "shape": "0",
+    "direction": "1",
+    "relation": "Inclusion"
+   },
+   {
+    "node1": "2",
+    "node2": "0",
+    "color": "0",
+    "shape": "0",
+    "direction": "1",
+    "relation": "Inclusion"
+   },
+   {
+    "node1": "3",
+    "node2": "0",
+    "color": "0",
+    "shape": "0",
+    "direction": "1",
+    "relation": "Inclusion"
+   },
+   {
+    "node1": "4",
+    "node2": "0",
+    "color": "0",
+    "shape": "0",
+    "direction": "1",
+    "relation": "Inclusion"
+   }
+  ],
+  "groups": [
+   {
+    "relation": "Iteration",
+    "nodes": "1 2 3 4"
+   }
+  ]
+ }
+]

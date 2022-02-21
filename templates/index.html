@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://cdn.bootcdn.net/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-1">
+            <button class="btn btn-danger" onclick="save()">保存！</button>
+            <div class="row pre-scrollable" style="max-height: 800px">
+                <div id="filelist" class="btn-group" data-toggle="buttons">
+<!--                    <button type="button" class="list-group-item list-group-item-success">lalala</button>-->
+
+<!--                    <label class="btn">-->
+<!--                        <input type="radio" name="options" id="option1"> 选项 1-->
+<!--                    </label>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11">
+            <div id="controlArea" style="display:flex; align-items:center; height:50px">
+                <span class="label label-primary Inclusion" style="margin-right: 10px; font-size: 15px;">Inclusion</span>
+                <span class="label label-primary logical" style="margin-right: 10px; font-size: 15px;">logical</span>
+                <span class="label label-primary Association" style="margin-right: 10px; font-size: 15px;">Association</span>
+                <span class="label label-primary Parallel" style="margin-right: 10px; font-size: 15px;">Parallel</span>
+                <span class="label label-primary Sequential" style="margin-right: 10px; font-size: 15px;">Sequential</span>
+                <span class="label label-primary Iteration" style="margin-right: 10px; font-size: 15px;">Iteration</span>
+                <span class="label label-primary Compostion" style="margin-right: 10px; font-size: 15px;">Compostion</span>
+            </div>
+            <div class="list-group" style="display:flex; align-items:center;">
+                <button type="button" class="list-group-item list-group-item-success" onclick="labelAction(true)">正确</button>
+                <button type="button" class="list-group-item list-group-item-danger" onclick="labelAction(false)">错误</button>
+            </div>
+            <div id="viz" ></div>
+        </div>
+
+    </div>
+    2
+    <script src="static/files.js" type="text/javascript"></script>
+    <script src="static/mindmap.js"></script>
+    <script src="static/action.js"></script>
+</body>
+</html>
+
