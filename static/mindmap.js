@@ -66,14 +66,17 @@ function add_node(id, text, x, y, width, height, color, shape) {
     var node = svg
         .append("g")
         .attr("class", "node-group");
+    // TODO
     if (shape == "0") {
-        add_rect(node, id, text, x, y, width, height, "white");
+        add_rect(node, id, text, x, y, width, height, "white"); // rx默认值1：直角 color白的：无轮廓
     } else if (shape == "1") {
         add_circle(node, id, text, x, y, width, height, color);
     } else if (shape == "2") {
         add_rect(node, id, text, x, y, width, height, color);
     } else if (shape == "3") {
         add_rect(node, id, text, x, y, width, height, color, 10);
+    } else if (shape == "4") { //polygon
+        add_polygon(node, id, text, x, y, width, height, color, 10);
     }
     x_all.push(x);
     y_all.push(y);
@@ -117,6 +120,37 @@ function add_circle(node, id, text, x, y, width, height, color) {
         .attr('x', x - width / 2)
         .attr('y', y)
         .text(text);
+}
+
+function add_polygon(node, id, text, x, y, width, height, color) {
+    node
+        .append("polygon")
+        .attr("id", "node" + id)
+        .attr("class", "node-point")
+        .attr("points", polygonPoints(x,y,width/2, 5))
+        .attr("r", width/2)
+        .attr("stroke", color)
+        .attr("fill", "None")
+        .attr("opacity", .5);
+    node.append('text')
+        .attr("id", "text" + id)
+        .attr('class', 'text')
+        .attr('x', x - width / 2)
+        .attr('y', y)
+        .text(text);
+}
+
+function polygonPoints(cx,cy,r,n){
+    var alpha=2*Math.PI/n;
+    var a=Math.PI/2+alpha/2;
+    var points="";
+    for(var i=0;i<n;i++){
+        x=cx+r*Math.cos(a);
+        y=cy+r*Math.sin(a);
+        points+=x+","+y+",";
+        a+=alpha;
+    }
+    return points.substring(0,points.length-1);
 }
 
 function add_link(node1, node2, color, relation) {
@@ -173,3 +207,4 @@ function add_group(relation, nodes) {
 
     group_y += 30
 }
+
