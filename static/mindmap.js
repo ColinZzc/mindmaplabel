@@ -24,6 +24,29 @@ function cleanSVG(){
     y_all = new Array();
     text_all = new Array();
     group_y = 50
+
+    // <!--svg中会用到的箭头-->
+    // <defs>
+    //   <marker id="markerArrow" markerWidth="13" markerHeight="13" refx="2" refy="6" orient="auto">
+    //     <path d="M2,2 L2,11 L10,6 L2,2"style="fill: #000000;" />
+    //   </marker>
+    // </defs>
+    let arrorSize = 2
+    svg.append("defs")
+        .append("marker")
+        .attr("id", "markerArrow")
+        .attr("viewBox", "0 0 "+arrorSize+" "+arrorSize)
+        .attr("markerWidth", arrorSize)
+        .attr("markerHeight", arrorSize)
+        .attr("refX", arrorSize)
+        .attr("refY", arrorSize/2)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 L "+arrorSize+" "+arrorSize/2+" L 0 "+arrorSize+" z")
+        .attr("fill", "#000000")
+
+
+
 }
 
 
@@ -48,7 +71,7 @@ function readTextFile(file) {
             });
             data[0].links.forEach(function (link) {
                 //console.log(link)
-                add_link(link.node1, link.node2, link.color, link.relation);
+                add_link(link.node1, link.node2, link.color, link.relation, link.shape);
             });
             data[0].groups.forEach(function (group) {
                 //console.log(group)
@@ -66,7 +89,6 @@ function add_node(id, text, x, y, width, height, color, shape) {
     var node = svg
         .append("g")
         .attr("class", "node-group");
-    // TODO
     if (shape == "0") {
         add_rect(node, id, text, x, y, width, height, "white"); // rx默认值1：直角 color白的：无轮廓
     } else if (shape == "1") {
@@ -196,7 +218,7 @@ function flowerD(cx, cy, r, n) {
     return d.substring(0,d.length-1);
 }
 
-function add_link(node1, node2, color, relation) {
+function add_link(node1, node2, color, relation, shape) {
 
     let x1 = x_all[data_p.indexOf(node1)];
     let y1 = y_all[data_p.indexOf(node1)];
@@ -216,17 +238,19 @@ function add_link(node1, node2, color, relation) {
         .attr("y2", y2)
         .attr("stroke", color)
         .attr("stroke-width", 5)
-        .attr("opacity", 0.5);
+        .attr("opacity", 0.5)
 
-    // let mx = (x1 / 2.0 + x2 / 2.0);
-    // let my = (y1 / 2 + y2 / 2);
-    // console.log(node2)
-    // link.append('text')
-    //     .attr('class', 'text-link')
-    //     .attr('x', mx)
-    //     .attr('y', my)
-    //     .attr("stoke", "black")
-    //     .text(relation);
+    if (shape=="2") {
+        link.attr("marker-end", "url(#markerArrow)");
+    } else if (shape=="3") {
+        link.attr("marker-start", "url(#markerArrow)");
+    } else if (shape=="4") {
+        link.attr("marker-start", "url(#markerArrow)");
+        link.attr("marker-end", "url(#markerArrow)");
+    } else if (shape=="5") {
+        link.attr("stroke-dasharray", "3 2");
+    }
+
 }
 
 function add_group(relation, nodes) {
