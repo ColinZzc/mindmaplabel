@@ -76,7 +76,11 @@ function add_node(id, text, x, y, width, height, color, shape) {
     } else if (shape == "3") {
         add_rect(node, id, text, x, y, width, height, color, 10);
     } else if (shape == "4") { //polygon
-        add_polygon(node, id, text, x, y, width, height, color, 10);
+        add_polygon(node, id, text, x, y, width, height, color, 5);
+    }else if (shape == "5") { //flower
+        add_flower(node, id, text, x, y, width, height, color, 5);
+    }else if (shape == "5") { //other
+        add_polygon(node, id, text, x, y, width, height, color, 3);
     }
     x_all.push(x);
     y_all.push(y);
@@ -122,13 +126,12 @@ function add_circle(node, id, text, x, y, width, height, color) {
         .text(text);
 }
 
-function add_polygon(node, id, text, x, y, width, height, color) {
+function add_polygon(node, id, text, x, y, width, height, color, n) {
     node
         .append("polygon")
         .attr("id", "node" + id)
         .attr("class", "node-point")
-        .attr("points", polygonPoints(x,y,width/2, 5))
-        .attr("r", width/2)
+        .attr("points", polygonPoints(x,y,width/2, n))
         .attr("stroke", color)
         .attr("fill", "None")
         .attr("opacity", .5);
@@ -151,6 +154,46 @@ function polygonPoints(cx,cy,r,n){
         a+=alpha;
     }
     return points.substring(0,points.length-1);
+}
+
+function add_flower(node, id, text, x, y, width, height, color, n) {
+    node
+        .append("path")
+        .attr("id", "node" + id)
+        .attr("class", "node-point")
+        .attr("d", flowerD(x, y, width/2, n))
+        .attr("r", width/2)
+        .attr("stroke", color)
+        .attr("fill", "None")
+        .attr("opacity", .5);
+    node.append('text')
+        .attr("id", "text" + id)
+        .attr('class', 'text')
+        .attr('x', x - width / 2)
+        .attr('y', y)
+        .text(text);
+}
+
+function flowerD(cx, cy, r, n) {
+    n=n*2
+    var alpha=2*Math.PI/n;
+    var a=Math.PI/2+alpha/2;
+
+    x=cx+r*Math.cos(a);
+    y=cy+r*Math.sin(a);
+    var d="M "+x+" "+y+", ";
+    a+=alpha;
+
+    for(var i=1;i<n;i+=2){
+        x1=cx+r*2*Math.cos(a);
+        y1=cy+r*2*Math.sin(a);
+        a+=alpha
+        x=cx+r*Math.cos(a);
+        y=cy+r*Math.sin(a);
+        a+=alpha
+        d+="Q "+x1+" "+y1+" "+x+" "+y+" , ";
+    }
+    return d.substring(0,d.length-1);
 }
 
 function add_link(node1, node2, color, relation) {
